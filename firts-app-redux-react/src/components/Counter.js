@@ -13,13 +13,13 @@ const Counter = () => {
   //So it's an automatically reactive and changes to the Redux store will cause this function to be executed.
 
   const incrementHandler=()=>{
-    dispatch({type: 'increment'});
+    dispatch({type: 'increment', amount:1});
   }
   const decrementHandler=()=>{
     dispatch({type: 'decrement'});
   }
   const increment5Handler=()=>{
-    dispatch({type: 'increment5'});
+    dispatch({type: 'increment', amount:5});
 
   }
   const toggleCounterHandler = () => {};
