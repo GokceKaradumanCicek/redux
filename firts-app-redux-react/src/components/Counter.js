@@ -11,6 +11,7 @@ const Counter = () => {
   //So your component will be updated and will receive the latest counter automatically
   //whenever that data changes in the Redux store.
   //So it's an automatically reactive and changes to the Redux store will cause this function to be executed.
+  const showCounter= useSelector(state=>state.showCounter);
 
   const incrementHandler=()=>{
     dispatch({type: 'increment', amount:1});
@@ -22,12 +23,14 @@ const Counter = () => {
     dispatch({type: 'increment', amount:5});
 
   }
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({type: 'toggle'})
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {showCounter && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button  onClick={decrementHandler}>Decrement</button>
