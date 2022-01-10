@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'; //to access to 'store' w
 import {counterActions} from '../store/index'; 
 const Counter = () => {
   const dispatch=useDispatch(); //useDispatch returns a function
-  const counter = useSelector(state=>state.counter)//this function will be executed for us by react redux,
+  const counter = useSelector(state=>state.counterReducer.counter)//this function will be executed for us by react redux,
   //then it will pass redux state,
   //get the part of state which this component is needed.This is 'counter' in this store.
   //Now the great thing is that when you use useSelector,
@@ -11,7 +11,7 @@ const Counter = () => {
   //So your component will be updated and will receive the latest counter automatically
   //whenever that data changes in the Redux store.
   //So it's an automatically reactive and changes to the Redux store will cause this function to be executed.
-  const showCounter= useSelector(state=>state.showCounter);
+  const showCounter= useSelector(state=>state.counterReducer.showCounter);
 
   const incrementHandler=()=>{
     //dispatch({type: 'increment', amount:1});
