@@ -1,6 +1,5 @@
-import { createStore } from "redux";
 import {createSlice, configureStore} from '@reduxjs/toolkit';
-import { configure } from "@testing-library/react";
+
 const initialState={ counter:0, showCounter:true }
 
 const counterSlice=createSlice({ //This is used to mutate the state, and prevent writing whole state even if some properties are not used.
@@ -8,12 +7,12 @@ const counterSlice=createSlice({ //This is used to mutate the state, and prevent
     initialState: initialState, // initial state must be entered
     reducers:{
         increment(state,action){ // increment method
-          state.counter = state.counter+ action.amount; //just mutate counter according to amount
+          state.counter = state.counter+ action.payload; //just mutate counter according to amount
         },
         decrement(state){//decrement method
             state.counter--; //mutate counter property of state with decreasing by 1
         },
-        toggle(){ // toggle method
+        toggle(state){ // toggle method
             state.showCounter= !state.showCounter; //mutate showCounter property of state, changing with opposite value    
         }
     }
@@ -46,4 +45,5 @@ const store=configureStore({
     reducer:counterSlice.reducer
 })//Creates a store,receive an object not a function.
 
+export const counterActions=counterSlice.actions;
 export default store;
