@@ -4,7 +4,7 @@ import Products from './components/Shop/Products';
 import {useSelector, useDispatch} from 'react-redux';
 import {Fragment, useEffect} from 'react';
 import Notification from './components/UI/Notification';
-import {sendCartData} from './store/cart-slice';
+import {fetchCartData, sendCartData} from './store/cart-actions';
 
 let isInitial=true;
 
@@ -13,6 +13,12 @@ function App() {
   const showCart= useSelector((state)=>state.ui.cartIsVisible);
   const cart=useSelector((state)=>state.cart);
   const notificationState=useSelector((state)=>state.ui.notification)
+
+  useEffect(()=>{
+    dispatch(fetchCartData(cart));
+  },[dispatch]);
+  //This useEffect just work for the first time that component renders.
+  //since dispatch function is never changed.
 
  useEffect(()=>{
    if(isInitial){
